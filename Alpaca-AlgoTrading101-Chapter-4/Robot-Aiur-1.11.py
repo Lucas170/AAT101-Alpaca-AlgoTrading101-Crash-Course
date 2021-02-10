@@ -55,8 +55,8 @@ import logging
 
 ### Step 1: Authentication and connection details
 
-api_key = 'PKHZ6PZYK16XCTEGCJGD'
-api_secret = 'HE6v6kfpHhMpmEZrljwmZPVZZlqXUqBYsPpqc9Vr'
+api_key = '<insert api_key>'
+api_secret = 'insert api_secret'
 base_url = 'https://paper-api.alpaca.markets'
 
 
@@ -87,8 +87,6 @@ take_profit_level = None
 stop_loss_level = None
 
 share_quantity = 1
-
-
 
 
 
