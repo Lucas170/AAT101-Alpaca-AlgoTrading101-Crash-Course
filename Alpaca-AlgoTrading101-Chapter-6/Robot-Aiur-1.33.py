@@ -49,6 +49,9 @@ api = tradeapi.REST(api_key, api_secret, base_url, api_version='v2')
 
 ### Step 3: Create basic logging configuration 
 
+for handler in logging.root.handlers[:]:
+    logging.root.removeHandler(handler)
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(levelname)s: %(message)s', filename=logname, filemode='a')
 
 ### Step 4: Set up variables for later use
