@@ -41,7 +41,7 @@ import time, logging, os
 api_key = os.environ.get('my_api_key')
 api_secret = os.environ.get('my_api_secret')
 base_url = 'https://paper-api.alpaca.markets'
-
+logname = os.environ.get('my_log_name')
 
 ### Step 2: Instantiate REST API 
 
