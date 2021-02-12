@@ -14,7 +14,6 @@ Created on Sat Feb 13 01:17:36 2021
 import logging
 
 temp1 = 'temp1 print'
-TEMP2
 TEMP3 = 'temp1 print'
 
 print(temp1)
