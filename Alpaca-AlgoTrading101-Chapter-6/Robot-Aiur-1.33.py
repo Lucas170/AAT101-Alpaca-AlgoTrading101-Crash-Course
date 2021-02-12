@@ -53,6 +53,7 @@ for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(levelname)s: %(message)s', filename=logname, filemode='a')
+logging=logging.getLogger()
 
 ### Step 4: Set up variables for later use
 
