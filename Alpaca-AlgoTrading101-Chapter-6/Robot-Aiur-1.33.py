@@ -2,13 +2,9 @@
 
 ############### Read Me ###############
  
-### Name of strategy: Robot Aiur 1.32
+### Name of strategy: Robot Aiur 1.33
 
-The focus of Aiur 1.32 is risk management.
-
-Aiur 1.32 = Aiur 1.31 + uses environment variables from your server for your API key and secret
-
-
+Aiur 1.33 = Aiur 1.32 + logs are saved to a file
 
 
 ### Robot Aiur 1.00 (recap)
@@ -53,7 +49,7 @@ api = tradeapi.REST(api_key, api_secret, base_url, api_version='v2')
 
 ### Step 3: Create basic logging configuration 
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(levelname)s: %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(levelname)s: %(message)s', filename=logname, filemode='a')
 
 ### Step 4: Set up variables for later use
 
