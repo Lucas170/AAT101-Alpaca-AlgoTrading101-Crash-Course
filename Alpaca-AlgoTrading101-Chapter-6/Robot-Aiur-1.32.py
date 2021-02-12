@@ -59,7 +59,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(levelname)s: %(me
 
 ticker = 'TSLA' # The asset we are trading
 
-current_order_id = os.environ.get('order_id') # Our order id number. Change this if this order id has already been taken
+current_order_id = int(os.environ.get('order_id')) # Our order id number. Change this if this order id has already been taken
 
 take_profit_percent = 10  # E.g. 2 means 2% take profit
 stop_loss_percent = 5  # E.g. 2 means 2% stop loss
