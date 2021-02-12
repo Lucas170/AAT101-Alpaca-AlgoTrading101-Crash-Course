@@ -7,14 +7,17 @@ Created on Sat Feb 13 01:17:36 2021
 import logging
 
 temp1 = 'temp1 print'
-temp2
+TEMP2
+TEMP3 = 'temp1 print'
 
 print(temp1)
-print(temp2)
+print(TEMP2)
+print(TEMP3)
+
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(levelname)s: %(message)s')
 
 logging.info(temp1)
-logging.info(temp2)
-
+logging.info(TEMP2)
+logging.info(TEMP3)
 
