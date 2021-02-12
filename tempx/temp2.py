@@ -14,7 +14,7 @@ Created on Sat Feb 13 01:17:36 2021
 import logging
 
 temp1 = 'temp1 print'
-TEMP3 = 'temp1 print'
+TEMP3 = 'temp3 print'
 
 print(temp1)
 
@@ -26,3 +26,6 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(levelname)s: %(me
 logging.info(temp1)
 
 logging.info(TEMP3)
+
+logging.warning(f'Order size limit of {temp1} reached.')
+logging.warning(f'Order size limit of {TEMP3} reached.')
