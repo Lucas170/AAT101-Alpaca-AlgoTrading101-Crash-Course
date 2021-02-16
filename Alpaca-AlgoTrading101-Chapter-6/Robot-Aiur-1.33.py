@@ -52,8 +52,21 @@ api = tradeapi.REST(api_key, api_secret, base_url, api_version='v2')
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
 
+## Set logger for saving files
 logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(levelname)s: %(message)s', filename=logname, filemode='a')
-logging=logging.getLogger()
+
+## Set a logger for display
+# Define a Handler which writes messages
+console = logging.StreamHandler()
+# Write messages of priority INFO or higher
+console.setLevel(logging.INFO)
+# Set a format which is simpler for console use
+formatter = logging.Formatter('%(asctime)s: %(levelname)s: %(message)s')
+# Tell the handler to use this format
+console.setFormatter(formatter)
+# Add the handler to the root logger
+logging.getLogger('').addHandler(console)
+
 
 ### Step 4: Set up variables for later use
 
