@@ -4,11 +4,7 @@
  
 ### Name of strategy: Robot Aiur 1.32
 
-The focus of Aiur 1.32 is risk management.
-
-Aiur 1.32 = Aiur 1.31 + uses environment variables from your server for your API key and secret
-
-
+Aiur 1.32 = Aiur 1.31 + uses environment variables from your server for your API key, secret and some variables
 
 
 ### Robot Aiur 1.00 (recap)
@@ -42,10 +38,13 @@ import time, logging, os
 
 ### Step 1: Authentication and connection details
 
-api_key = os.environ.get('my_api_key')
-api_secret = os.environ.get('my_api_secret')
-base_url = 'https://paper-api.alpaca.markets'
-
+api_key = os.environ.get('my_api_key') # Alpaca API key
+api_secret = os.environ.get('my_api_secret') # Alpaca API Secret
+base_url = os.environ.get('my_base_url') # Alpaca's base URL
+ticker = os.environ.get('ticker_to_trade') # The asset we are trading
+current_order_id = int(os.environ.get('order_id')) # Our order id number. Change this if this order id has already been taken
+long_percent_change = float(os.environ.get('entry_long_percent_change')) # Percent change of ticker to initate long entry trade
+short_percent_change = float(os.environ.get('entry_short_percent_change')) # Percent change of ticker to initate short entry trade
 
 ### Step 2: Instantiate REST API 
 
@@ -56,10 +55,6 @@ api = tradeapi.REST(api_key, api_secret, base_url, api_version='v2')
 logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(levelname)s: %(message)s')
 
 ### Step 4: Set up variables for later use
-
-ticker = 'TSLA' # The asset we are trading
-
-current_order_id = int(os.environ.get('order_id')) # Our order id number. Change this if this order id has already been taken
 
 take_profit_percent = 10  # E.g. 2 means 2% take profit
 stop_loss_percent = 5  # E.g. 2 means 2% stop loss
@@ -310,7 +305,7 @@ while True:
     elif not in_long_position and not in_short_position: 
         # We are not in a position - Look for an entry
         # Insert long entry rule here
-        if percent_change > 5:
+        if percent_change > long_percent_change:
             # Long trade signal
 
             # (#component3)            
@@ -339,7 +334,7 @@ while True:
                 logging.warning(f'Long entry signal triggered but entry order NOT fired.')
 
         # Insert short entry rule here
-        elif percent_change < -5:
+        elif percent_change < short_percent_change:
             # Short trade signal
 
             # (#component3)

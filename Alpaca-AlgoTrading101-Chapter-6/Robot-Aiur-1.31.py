@@ -4,8 +4,6 @@
  
 ### Name of strategy: Robot Aiur 1.31
 
-The focus of Aiur 1.31 is risk management.
-
 Aiur 1.31 = Aiur 1.21 + the following components:
 
 1. Limit order size (e.g. Max 20 shares and min -20 shares short per order) (#component1)
@@ -45,7 +43,7 @@ import logging
 ### Step 1: Authentication and connection details
 
 api_key = '<insert api_key>'
-api_secret = 'insert api_secret'
+api_secret = '<insert api_secret>'
 base_url = 'https://paper-api.alpaca.markets'
 
 
@@ -61,7 +59,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(levelname)s: %(me
 
 ticker = 'TSLA' # The asset we are trading
 
-current_order_id = 2295 # Our order id number. Change this if this order id has already been taken
+current_order_id = 20132 # Our order id number. Change this if this order id has already been taken
 
 take_profit_percent = 10  # E.g. 2 means 2% take profit
 stop_loss_percent = 5  # E.g. 2 means 2% stop loss

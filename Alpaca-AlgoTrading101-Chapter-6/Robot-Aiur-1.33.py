@@ -38,10 +38,14 @@ import time, logging, os
 
 ### Step 1: Authentication and connection details
 
-api_key = os.environ.get('my_api_key')
-api_secret = os.environ.get('my_api_secret')
-base_url = 'https://paper-api.alpaca.markets'
-logname = os.environ.get('my_log_name')
+api_key = os.environ.get('my_api_key') # Alpaca API key
+api_secret = os.environ.get('my_api_secret') # Alpaca API Secret
+base_url = os.environ.get('my_base_url') # Alpaca's base URL
+ticker = os.environ.get('ticker_to_trade') # The asset we are trading
+current_order_id = int(os.environ.get('order_id')) # Our order id number. Change this if this order id has already been taken
+long_percent_change = float(os.environ.get('entry_long_percent_change')) # Percent change of ticker to initate long entry trade
+short_percent_change = float(os.environ.get('entry_short_percent_change')) # Percent change of ticker to initate short entry trade
+logname = os.environ.get('my_log_name') # Name of the saved log file
 
 ### Step 2: Instantiate REST API 
 
@@ -69,10 +73,6 @@ logging.getLogger('').addHandler(console)
 
 
 ### Step 4: Set up variables for later use
-
-ticker = 'TSLA' # The asset we are trading
-
-current_order_id = int(os.environ.get('order_id')) # Our order id number. Change this if this order id has already been taken
 
 take_profit_percent = 10  # E.g. 2 means 2% take profit
 stop_loss_percent = 5  # E.g. 2 means 2% stop loss
@@ -323,7 +323,7 @@ while True:
     elif not in_long_position and not in_short_position: 
         # We are not in a position - Look for an entry
         # Insert long entry rule here
-        if percent_change > 5:
+        if percent_change > long_percent_change:
             # Long trade signal
 
             # (#component3)            
@@ -352,7 +352,7 @@ while True:
                 logging.warning(f'Long entry signal triggered but entry order NOT fired.')
 
         # Insert short entry rule here
-        elif percent_change < -5:
+        elif percent_change < short_percent_change:
             # Short trade signal
 
             # (#component3)
