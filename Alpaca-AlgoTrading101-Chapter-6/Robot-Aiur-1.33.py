@@ -56,10 +56,10 @@ api = tradeapi.REST(api_key, api_secret, base_url, api_version='v2')
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
 
-## Set logger for saving files
+## Set logger for saving logs
 logging.basicConfig(level=logging.INFO, format='%(asctime)s: %(levelname)s: %(message)s', filename=logname, filemode='a')
 
-## Set a logger for display
+## Set a logger for displaying logs
 # Define a Handler which writes messages
 console = logging.StreamHandler()
 # Write messages of priority INFO or higher
@@ -77,8 +77,8 @@ logging.getLogger('').addHandler(console)
 take_profit_percent = 10  # E.g. 2 means 2% take profit
 stop_loss_percent = 5  # E.g. 2 means 2% stop loss
 
-in_long_position = False # We assume we are not in a long position when we start the algo. Set as True if we are in long position.
-in_short_position = False # We assume we are not in a short position when we start the algo. Set as True if we are in short position. 
+in_long_position = False # We assume we are not in a long position when we start the algo. This should always be false.
+in_short_position = False # We assume we are not in a short position when we start the algo. This should always be false.
 
 take_profit_level = None
 stop_loss_level = None
@@ -153,9 +153,10 @@ def fire_trade(ticker, direction, share_quantity, current_order_id, max_position
             type='market',
             client_order_id='Aiur_' + str(current_order_id),
         )
-        time.sleep(3)  # Give it a few seconds to process the order...
     
         if order_info.status == 'accepted':
+            
+            time.sleep(3)  # Give it a few seconds to process the order...
             
             order_info_status = api.get_order_by_client_order_id('Aiur_' + str(current_order_id)).status
             
