@@ -103,9 +103,10 @@ def fire_trade(direction):
         type='market',
         client_order_id='Aiur_' + str(current_order_id),
     )
-    time.sleep(3)  # Give it a few seconds to process the order...
 
     if order_info.status == 'accepted':
+        
+        time.sleep(3)  # Give it a few seconds to process the order...
         
         order_info_status = api.get_order_by_client_order_id(
             'Aiur_' + str(current_order_id)
