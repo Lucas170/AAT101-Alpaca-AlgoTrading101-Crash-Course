@@ -355,6 +355,7 @@ while True:
         
         if percent_change < 2: # Insert your exit rules here 
             api.cancel_order(tp_order_id) #  Cancel TP order. Cancelling TP automatically cancels the SL order. We need to remove the TP and SL orders before we can exit our position.
+            time.sleep(2) # Give some time for the TP and SL orders to cancel
             order_status, filled_price, share_quantity_exited, tp_order_id, sl_order_id = fire_trade(ticker, 'sell', share_quantity_entered, current_order_id, max_position_size_per_order, max_total_position_size, False, 0, 0) # Last 3 inputs are: use_server_tp_sl, take_profit_level, stop_loss_level. We don't need take-profit and stop-losses here.
             if order_status == 'filled':
                 in_long_position = False
@@ -366,6 +367,7 @@ while True:
         
         if percent_change > 2: # Insert your exit rules here
             api.cancel_order(tp_order_id) #  Cancel TP order. Cancelling TP automatically cancels the SL order. We need to remove the TP and SL orders before we can exit our position.  
+            time.sleep(2) # Give some time for the TP and SL orders to cancel
             order_status, filled_price, share_quantity_exited, tp_order_id, sl_order_id = fire_trade(ticker, 'buy', share_quantity_entered, current_order_id, max_position_size_per_order, max_total_position_size, False, 0, 0) # Last 3 inputs are: use_server_tp_sl, take_profit_level, stop_loss_level. We don't need take-profit and stop-losses here.
             if order_status == 'filled':
                 in_short_position = False
